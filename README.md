@@ -76,7 +76,7 @@ using (var client = new HttpClient())
      };
 
     MemoryStream pdfDocument = await semicoClient.GenerateDocument(File.ReadAllBytes(docxTemplatePath), File.ReadAllBytes(jsonPath),  documentOptions);
-
+ 
 }
 
 ```
