@@ -29,7 +29,7 @@ namespace SemicoClient.Utils
             return Convert.FromBase64String(base64);
         }
 
-        public static Stream ConvertToStream(string base64)
+        public static MemoryStream ConvertToStream(string base64)
         {
             return new MemoryStream(Convert.FromBase64String(base64));
         }

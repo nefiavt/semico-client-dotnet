@@ -3,12 +3,14 @@
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
     <Authors>Nefia</Authors>
-    <PackageTags>semico docx template xlsx convert word excel rows tables columns generate</PackageTags>
+    <PackageTags>semico docx template xlsx convert word excel rows tables columns generate pdf export</PackageTags>
     <PackageProjectUrl>https://github.com/nefiavt/semico-client-dotnet</PackageProjectUrl>
     <RepositoryType>git</RepositoryType>
     <RepositoryUrl>https://github.com/nefiavt/semico-client-dotnet</RepositoryUrl>
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
     <Description>SemicoClient REST API Client for Semico services. Semico is a powerful template-based docx generation service.</Description>
+    <Version>1.1.0</Version>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
   </PropertyGroup>
 
   <ItemGroup>

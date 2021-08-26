@@ -26,25 +26,13 @@ namespace SemicoClient.Services
         }
 
 
-        public async Task<Stream> GenerateDocument(Stream template, Stream jsonData)
-        { 
-            GenerateDocumentRequest documentRequest = new GenerateDocumentRequest
-            {
-                Data = Converter.ConvertToBase64(jsonData),
-                Template = Converter.ConvertToBase64(template)
-            };
-
-            GenerateDocumentResponse response = await RemoteCall(documentRequest);
-
-            return Converter.ConvertToStream(response.Document);
-        }
-
-        public async Task<Stream> GenerateDocument(byte [] template, byte [] jsonData)
+        public async Task<MemoryStream> GenerateDocument(Stream template, Stream jsonData, DocumentOptions options = null)
         {
             GenerateDocumentRequest documentRequest = new GenerateDocumentRequest
             {
                 Data = Converter.ConvertToBase64(jsonData),
-                Template = Converter.ConvertToBase64(template)
+                Template = Converter.ConvertToBase64(template),
+                Options = options
             };
 
             GenerateDocumentResponse response = await RemoteCall(documentRequest);
@@ -52,7 +40,21 @@ namespace SemicoClient.Services
             return Converter.ConvertToStream(response.Document);
         }
 
-        private async Task <GenerateDocumentResponse> RemoteCall(GenerateDocumentRequest documentRequest)
+        public async Task<MemoryStream> GenerateDocument(byte[] template, byte[] jsonData, DocumentOptions options = null)
+        {
+            GenerateDocumentRequest documentRequest = new GenerateDocumentRequest
+            {
+                Data = Converter.ConvertToBase64(jsonData),
+                Template = Converter.ConvertToBase64(template),
+                Options = options
+            };
+
+            GenerateDocumentResponse response = await RemoteCall(documentRequest);
+
+            return Converter.ConvertToStream(response.Document);
+        }
+
+        private async Task<GenerateDocumentResponse> RemoteCall(GenerateDocumentRequest documentRequest)
         {
             string jsonString = JsonSerializer.Serialize(documentRequest);
 

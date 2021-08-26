@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SemicoClient.Models;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -9,7 +10,7 @@ namespace SemicoClient.Services
 {
     public interface ISemicoClientService
     {
-        Task<Stream> GenerateDocument(Stream template, Stream jsonData);
-        Task<Stream> GenerateDocument(byte[] template, byte[] jsonData);
+        Task<MemoryStream> GenerateDocument(Stream template, Stream jsonData, DocumentOptions options = null);
+        Task<MemoryStream> GenerateDocument(byte[] template, byte[] jsonData, DocumentOptions options = null);
     }
 }

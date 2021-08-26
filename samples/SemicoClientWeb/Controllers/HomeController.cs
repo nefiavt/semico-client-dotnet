@@ -9,6 +9,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using System.IO;
+using SemicoClient.Models;
 
 namespace SemicoClientWeb.Controllers
 {
@@ -32,18 +33,41 @@ namespace SemicoClientWeb.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Index(string btn)
+        public async Task<IActionResult> Index(string generateBtn)
         {
-
             byte[] template = await System.IO.File.ReadAllBytesAsync($@"{appEnv.ContentRootPath}/Templates/DocX/simple.docx");
             byte[] jsonData = await System.IO.File.ReadAllBytesAsync($@"{appEnv.ContentRootPath}/Templates/DocX/simple.json");
 
-            Stream document = await semicoClient.GenerateDocument(template, jsonData);
 
+            if (generateBtn == "docx")
+            {
+                Stream document = await semicoClient.GenerateDocument(template, jsonData);
 
+                return File(document, "application/vnd.openxmlformats-officedocument.wordprocessingml.document", "simple.docx");
+            }
+            else
+            {
+                DocumentOptions documentOptions = new DocumentOptions
+                {
+                    ConvertToPdf = true,
+                    PdfOptions = new PdfOptions
+                    {
+                        AdditionalMetadata = "More metadata",
+                        Application = "Semico Sample Web",
+                        Author = "Nefia",
+                        Producer = "Semico",
+                        Subject = "Semico client",
+                        Title = "PDF generation",
+                    }
+                };
 
-            return File(document, "application/vnd.openxmlformats-officedocument.wordprocessingml.document", "simple.docx");
+                Stream document = await semicoClient.GenerateDocument(template, jsonData, documentOptions);
+
+                return File(document, "application/pdf", "simple.pdf");
+            }
         }
+
+
 
 
         public IActionResult Privacy()

@@ -23,5 +23,8 @@ namespace SemicoClient.Models
         [JsonPropertyName("data")]
         [Required]
         public string Data { get; set; }
+
+        [JsonPropertyName("options")]
+        public DocumentOptions Options { get; set; }
     }
 }
