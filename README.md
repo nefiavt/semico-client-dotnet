@@ -1,8 +1,17 @@
-## SemicoClient REST API Client for Semico services.
+## REST API Client for Semico services.
 
-## Demo 
-Link https://semico.azurewebsites.net/
+Demo link https://semico.azurewebsites.net/
 
+Semico supports following features:
+* Simple tags
+* Loops
+* Conditions
+* Table rows
+* Table columns
+* Bullets
+* Numbering
+* Images
+* Convert to PDF
 
 ### Authentication
 
